@@ -8,5 +8,5 @@ class Customer < ActiveRecord::Base
 	validates :dni, presence: true,numericality: { only_integer: true },length: { maximum: 8 },uniqueness:{}
 	validates :cu_type, presence: true,inclusion: { in: %w(cuit cuil),message: "% is not a valid cuit/cuil type"}
 	validates :cu_value, presence: true,format:{with: /[\d{2}]+\-[\d{8}]+\-[\d{1}]/,
-        									message: "not cuit/l format" }
+        									message: "not cuit/l format" },uniqueness:{}
 end
