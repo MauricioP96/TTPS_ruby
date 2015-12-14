@@ -10,5 +10,6 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :cu_value
       t.timestamps null: false
     end
+    add_index :customers
   end
 end

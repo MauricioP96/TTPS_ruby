@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type_cont: MyString
+  value_cont: MyString
+
+two:
+  type_cont: MyString
+  value_cont: MyString
