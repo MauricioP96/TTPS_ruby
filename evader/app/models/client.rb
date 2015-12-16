@@ -13,5 +13,21 @@ class Client < ActiveRecord::Base
 	validates :cu_value, presence: true,format:{with: /[\d{2}]+\-[\d{8}]+\-[\d{1}]/,
       									message: "not cuit/l format" },uniqueness:{}
     accepts_nested_attributes_for :contacts
+    def actualizar_contactos(cont)
+    	contacts.destroy_all
+    	#foo=self.contacts.all.to_a.to_enum
+    	cont.values.each do |c|
+			#act=foo.next
+			#act.type_cont=cont.type_cont
+			#act.value_cont=cont.value_cont
+			contacts.new(c)
+		end	
+		save
+    end
+    def actualizar(client,cont,cont_nue)
+    	#contacts.new(cont_nue)
+    	(update_attributes(client) && actualizar_contactos(cont)&& contacts.create(cont_nue))
 
+
+    end
 end
