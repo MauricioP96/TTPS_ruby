@@ -24,9 +24,10 @@ class ClientsController < ApplicationController
 		@contactos=@cliente.contacts.all
 		#@cliente.actualizar_contactos(params[:cont])
 		
-		halt
+		
+		
 		if @cliente.actualizar(client_params,params[:cont],cont_nue_params)  #update_attributes(client_params)
-			redirect_to clients_path(@cliente.id)
+			redirect_to clients_path()
 		else
 			render action: 'edit'
 		end

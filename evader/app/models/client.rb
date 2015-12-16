@@ -11,7 +11,7 @@ class Client < ActiveRecord::Base
 	validates :dni, presence: true,numericality: { only_integer: true },length: { maximum: 8 }
 	validates :cu_type, presence: true,inclusion: { in: %w(cuit cuil),message: " is not a valid cuit/cuil type"}
 	validates :cu_value, presence: true,format:{with: /[\d{2}]+\-[\d{8}]+\-[\d{1}]/,
-      									message: "not cuit/l format" },
+      									message: "not cuit/l format" }
     accepts_nested_attributes_for :contacts
     def actualizar_contactos(cont)
     	contacts.destroy_all
@@ -20,14 +20,19 @@ class Client < ActiveRecord::Base
 			#act=foo.next
 			#act.type_cont=cont.type_cont
 			#act.value_cont=cont.value_cont
-			contacts.new(c)
+			contacts.create(c)
 		end	
-		save
+		
     end
     def actualizar(client,cont,cont_nue)
-    	#contacts.new(cont_nue)
-    	(update_attributes(client) && actualizar_contactos(cont)&& contacts.create(cont_nue))
-
+    	
+    	@nue=Contact.new(cont_nue)
+    	
+    	if @nue.valid?
+    		(update_attributes(client) && actualizar_contactos(cont)&& contacts.create(cont_nue))
+    	else
+    		(update_attributes(client) && actualizar_contactos(cont))
+    	end
 
     end
 end
