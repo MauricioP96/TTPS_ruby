@@ -1,7 +1,7 @@
-class CreateCustomers < ActiveRecord::Migration
+class CreateClients < ActiveRecord::Migration
   def change
-    create_table :customers do |t|
-      t.string :name
+    create_table :clients do |t|
+    	t.string :name
       t.string :last_name
       t.date :birthdate
       t.string :gender
@@ -10,6 +10,6 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :cu_value
       t.timestamps null: false
     end
-    add_index :customers
+    #add_index :clients
   end
 end

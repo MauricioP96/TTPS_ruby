@@ -6,15 +6,19 @@
 <body>
 	<h1>Pagina inicio</h1>
 	<table>
-		<% @customers.each do |customer| %>
+		<% @clientes.each do |cliente| %>
 		<tr>
-			<td><%= customer.name %></td>
-			<td><%= customer.last_name %></td>
-			<td><%= customer.dni %></td>
-			<td><%= customer.birthdate %></td>
+			<td><%= cliente.name %></td>
+			<td><%= cliente.last_name %></td>
+			<td><%= cliente.dni %></td>
+			<td><%= cliente.birthdate %></td>
 
 		</tr>
 		<% end %>
+		<% if @clientes.size==0 %>
+			NO HAY CLIENTES
+		<% end %>
 	</table>
+<%= link_to 'Registrar nuevo cliente', new_client_path %>
 </body>
 </html>

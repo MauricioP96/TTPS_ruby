@@ -1,7 +1,7 @@
 class CreateBills < ActiveRecord::Migration
   def change
     create_table :bills do |t|
-      t.belongs_to :customer, index: true
+      t.belongs_to :client, index: true
       t.string :details
       t.float :amount
       t.date :date

@@ -1,4 +1,4 @@
-class Customer < ActiveRecord::Base
+class Client < ActiveRecord::Base
 	has_many :contacts
     validates_associated :contacts
     has_many :bills
@@ -11,5 +11,7 @@ class Customer < ActiveRecord::Base
 	validates :dni, presence: true,numericality: { only_integer: true },length: { maximum: 8 },uniqueness:{}
 	validates :cu_type, presence: true,inclusion: { in: %w(cuit cuil),message: " is not a valid cuit/cuil type"}
 	validates :cu_value, presence: true,format:{with: /[\d{2}]+\-[\d{8}]+\-[\d{1}]/,
-        									message: "not cuit/l format" },uniqueness:{}
+      									message: "not cuit/l format" },uniqueness:{}
+    accepts_nested_attributes_for :contacts
+
 end

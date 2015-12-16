@@ -11,31 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215222648) do
+ActiveRecord::Schema.define(version: 20151216065300) do
 
   create_table "bills", force: :cascade do |t|
-    t.integer  "customer_id"
+    t.integer  "client_id"
     t.string   "details"
     t.float    "amount"
     t.date     "date"
     t.string   "receiver"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "bills", ["customer_id"], name: "index_bills_on_customer_id"
+  add_index "bills", ["client_id"], name: "index_bills_on_client_id"
 
-  create_table "contacts", force: :cascade do |t|
-    t.integer  "customer_id"
-    t.string   "type_cont"
-    t.string   "value_cont"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "contacts", ["customer_id"], name: "index_contacts_on_customer_id"
-
-  create_table "customers", force: :cascade do |t|
+  create_table "clients", force: :cascade do |t|
     t.string   "name"
     t.string   "last_name"
     t.date     "birthdate"
@@ -46,5 +36,15 @@ ActiveRecord::Schema.define(version: 20151215222648) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "contacts", force: :cascade do |t|
+    t.integer  "client_id"
+    t.string   "type_cont"
+    t.string   "value_cont"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "contacts", ["client_id"], name: "index_contacts_on_client_id"
 
 end
