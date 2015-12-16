@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Pagina inicio</h1>
+	<table>
+		<% @customers.each do |customer| %>
+		<tr>
+			<td><%= customer.name %></td>
+			<td><%= customer.last_name %></td>
+			<td><%= customer.dni %></td>
+			<td><%= customer.birthdate %></td>
+
+		</tr>
+		<% end %>
+	</table>
+</body>
+</html>

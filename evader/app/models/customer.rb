@@ -1,6 +1,7 @@
 class Customer < ActiveRecord::Base
 	has_many :contacts
     validates_associated :contacts
+    has_many :bills
 	validates :name, presence: true,format:{with: /\A[a-zA-Z ]+\z/,
         									message: "only allows letters" } #\w+
 	validates :last_name, presence: true,format:{with: /\A[a-zA-Z ]+\z/,
