@@ -4,7 +4,7 @@
 	<title></title>
 </head>
 <body>
-	<h1>Crear cliente</h1>
+	<h1>Modificar cliente</h1>
 	<%= form_for (@cliente) do |f| %>
 		<div class='field'>
 			<%= f.label :nombre %><br>
@@ -38,19 +38,20 @@
 			<%= f.label :numero %><br>
 			<%= f.text_field :cu_value , pattern:/[\d{2}]+\-[\d{8}]+\-[\d{1}]/ %>
 		</div>
-		<% @contactos.each do |cont| %>
-			<%= fields_for "cont[]",cont do |c| %>
-	    		<div class='field'>
-	    		<%= c.label :tipo_de_contacto %><br>
-	    		<%= c.text_field :type_cont %>
-	    		</div>
-	    		<div class='field'>
-	    		<%= c.label :forma_de_contacto %><br>
-	    		<%= c.text_field :value_cont %>
-	    		</div>
-    		<% end %>
-    	<% end %>
-
+		<% if !@contactos.nil? %>
+			<% @contactos.each do |cont| %>
+				<%= fields_for "cont[]",cont do |c| %>
+		    		<div class='field'>
+		    		<%= c.label :tipo_de_contacto %><br>
+		    		<%= c.text_field :type_cont %>
+		    		</div>
+		    		<div class='field'>
+		    		<%= c.label :forma_de_contacto %><br>
+		    		<%= c.text_field :value_cont %>
+		    		</div>
+	    		<% end %>
+	    	<% end %>
+	    <% end %>
     	<%= fields_for :cont_nue do |c| %>
 	    		<div class='field'>
 	    		<%= c.label :tipo_de_contacto %><br>

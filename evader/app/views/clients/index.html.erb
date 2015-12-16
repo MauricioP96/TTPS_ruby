@@ -12,7 +12,8 @@
 			<td><%= cliente.last_name %></td>
 			<td><%= cliente.dni %></td>
 			<td><%= cliente.birthdate %></td>
-			<td><%= link_to 'Modificar cliente', edit_client_path(cliente.id) %></td>td
+			<td><%= link_to 'Modificar cliente', edit_client_path(cliente.id) %></td>
+			<td><%= link_to 'Ver perfil', client_path(cliente.id) %></td>
 		</tr>
 		<% end %>
 		<% if @clientes.size==0 %>

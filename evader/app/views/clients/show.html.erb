@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Pagina inicio</h1>
+	<%= @cliente.name %>
+			<%= @cliente.last_name %>
+			<%= @cliente.dni %>
+			<%= @cliente.birthdate %></td>
+			<<%= link_to 'Modificar cliente', edit_client_path(@cliente.id) %>
+	</table>
+
+</body>
+</html>

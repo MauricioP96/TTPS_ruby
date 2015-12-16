@@ -21,20 +21,23 @@ class ClientsController < ApplicationController
 	end
 	def update
 		@cliente=Client.find(params[:id])
+		@contactos=@cliente.contacts.all
 		#@cliente.actualizar_contactos(params[:cont])
 		
-		
+		halt
 		if @cliente.actualizar(client_params,params[:cont],cont_nue_params)  #update_attributes(client_params)
-			redirect_to clients_url
+			redirect_to clients_path(@cliente.id)
 		else
-			reder action: 'edit'
+			render action: 'edit'
 		end
 	end
+	def show
+		@cliente=Client.find(params[:id])
 
 
-
-
+	end
 	private
+
 	def client_params
 		params.require(:client).permit(:name,:last_name,:birthdate,:gender,:dni,:cu_type,:cu_value)
 	end
