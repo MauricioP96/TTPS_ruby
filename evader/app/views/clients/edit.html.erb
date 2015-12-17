@@ -42,11 +42,11 @@
 			<% @contactos.each do |cont| %>
 				<%= fields_for "cont[]",cont do |c| %>
 		    		<div class='field'>
-		    		<%= c.label :tipo_de_contacto %><br>
-		    		<%= c.text_field :type_cont %>
+		    		<%= c.label :forma_de_contacto %><br>
+		    		<%= c.select( :type_cont, [['Teléfono','telefono'],[ 'Email','email'],['Skype','skype'],[ 'Dirección postal','dir_postal']]) %> <br>				
 		    		</div>
 		    		<div class='field'>
-		    		<%= c.label :forma_de_contacto %><br>
+		    		<%= c.label :contacto %><br>
 		    		<%= c.text_field :value_cont %>
 		    		</div>
 	    		<% end %>
@@ -55,11 +55,11 @@
 	    <h3>Ingrese nuevo contacto (opcional):</h3>
     	<%= fields_for :cont_nue do |c| %>
 	    		<div class='field'>
-	    		<%= c.label :tipo_de_contacto %><br>
-	    		<%= c.text_field :type_cont %>
+	    		<%= c.label :forma_de_contacto %><br>
+		    	<%= c.select( :type_cont, [['Teléfono','telefono'],[ 'Email','email'],['Skype','skype'],[ 'Dirección postal','dir_postal']]) %> <br>
 	    		</div>
 	    		<div class='field'>
-	    		<%= c.label :forma_de_contacto %><br>
+	    		<%= c.label :contacto %><br>
 	    		<%= c.text_field :value_cont %>
 	    		</div>
     		<% end %>

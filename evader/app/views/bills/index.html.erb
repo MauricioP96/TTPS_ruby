@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Faturas</h1>
+	<table>
+		<% if @bills.nil? %>
+			NO HAY FACTURAS
+		<% else %>
+		<% @bills.each do |bill| %>
+		<tr>
+			<td><%= bill.details %></td>
+			<td><%= bill.receiver %></td>
+			<td><%= bill.date %></td>
+			<td><%= bill.amount %></td>
+		</tr>
+		<% end %>
+		<% end %>
+	</table>
+<%= link_to 'Agregar nueva factura', new_client_bill_path %>
+</body>
+</html>

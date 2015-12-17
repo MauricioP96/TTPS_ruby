@@ -1,6 +1,6 @@
-class ClientsController < ApplicationController
+class BillsController < ApplicationController
     def index
-        @clientes = Client.all
+        @bills = Client.find[:id].bills
     end
     def new
     	@cliente=Client.new

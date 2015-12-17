@@ -10,7 +10,8 @@
 			<%= @cliente.dni %>
 			<%= @cliente.birthdate %></td>
 			<<%= link_to 'Modificar cliente', edit_client_path(@cliente.id) %>
-	</table>
+			<%= link_to 'Eliminar', @cliente,method: :delete,confirm: 'Seguro quiere eliminar el cliente?' %><br>
+	<%= link_to 'Atras', clients_path %>
 
 </body>
 </html>
