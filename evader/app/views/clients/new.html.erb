@@ -42,7 +42,7 @@
 		<%= fields_for :contacts do |c| %>
     		<div class='field'>
     		<%= c.label :tipo_de_contacto %><br>
-    		<%= c.text_field :type_cont %>
+    		<%= c.select( :type_cont, [['Teléfono','telefono'],[ 'Email','email'],['Skype','skype'],[ 'Dirección postal','dir_postal']]) %> <br>	
     		</div>
     		<div class='field'>
     		<%= c.label :forma_de_contacto %><br>

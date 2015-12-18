@@ -1,55 +1,41 @@
 class BillsController < ApplicationController
     def index
-        @bills = Client.find[:id].bills
+        @bills = Client.find(params[:client_id]).bills.all
     end
     def new
-    	@cliente=Client.new
-    	@cliente.contacts.build
+    	@bill=Client.find(params[:client_id]).bills.new
 	end
 	def create
-		@cliente=Client.new(client_params)
-		@cliente.contacts.new(contact_params)
-		if @cliente.save
-			redirect_to clients_url
+		@bill=Client.find(params[:client_id]).bills.new(bill_params)
+		if @bill.save
+			redirect_to client_bills_url
 		else
 			render action: 'new'
 		end
 	end
 	def edit 
-		@cliente=Client.find(params[:id])
-		@contactos=@cliente.contacts.all
+		@bill=Client.find(params[:client_id]).bills.find(params[:id])
 	end
 	def update
-		@cliente=Client.find(params[:id])
-		@contactos=@cliente.contacts.all
-		#@cliente.actualizar_contactos(params[:cont])
-		
-		
-		
-		if @cliente.actualizar(client_params,params[:cont],cont_nue_params)  #update_attributes(client_params)
-			redirect_to clients_path()
+		@bill=Client.find(params[:client_id]).bills.find(params[:id])
+		if @bill.update_attributes(bill_params)
+			redirect_to client_bills_path()
 		else
 			render action: 'edit'
 		end
 	end
 	def show
-		@cliente=Client.find(params[:id])
+		@bill=Client.find(params[:client_id]).bills.find(params[:id])
 	end
 
 	def destroy
-		Client.find(params[:id]).destroy
-		redirect_to clients_url
+		Client.find(params[:client_id]).bills.find(params[:id]).destroy
+		redirect_to client_bills_url
 
 	end
 	private
 
-	def client_params
-		params.require(:client).permit(:name,:last_name,:birthdate,:gender,:dni,:cu_type,:cu_value)
-	end
-	def contact_params
-		params.require(:contacts).permit(:type_cont, :value_cont)
-	end
-	def cont_nue_params
-		params.require(:cont_nue).permit(:type_cont, :value_cont)
+	def bill_params
+		params.require(:bill).permit(:receiver,:amount,:date,:details)
 	end
 end

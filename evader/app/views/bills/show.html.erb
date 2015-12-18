@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Detalles factura</h1>
+	<%= @bill.receiver %>
+	$<%= @bill.amount %>
+	<%= @bill.date %>
+	<%= @bill.details %></td>
+	<td><%= link_to 'Modificar factura', edit_client_bill_path(@bill.client_id,@bill.id) %></td>
+	<%= link_to 'Eliminar',client_bill_path(@bill.client_id,@bill.id),method: :delete,confirm: 'Seguro quiere eliminar la factura?' %><br>
+	<%= link_to 'Atras', clients_path %>
+
+</body>
+</html>

@@ -5,16 +5,19 @@
 </head>
 <body>
 	<h1>Faturas</h1>
+	<%= link_to 'Atras', clients_path %>
 	<table>
 		<% if @bills.nil? %>
 			NO HAY FACTURAS
 		<% else %>
 		<% @bills.each do |bill| %>
 		<tr>
-			<td><%= bill.details %></td>
 			<td><%= bill.receiver %></td>
 			<td><%= bill.date %></td>
 			<td><%= bill.amount %></td>
+			<td><%= link_to 'Modificar factura', edit_client_bill_path(bill.client_id,bill.id) %></td>
+			<td><%= link_to 'Ver detalles de factura', client_bill_path(bill.client_id,bill.id) %></td>
+			<td><%= link_to 'Eliminar',client_bill_path(bill.client_id,bill.id),method: :delete,confirm: 'Seguro quiere eliminar la factura?' %></td><br>
 		</tr>
 		<% end %>
 		<% end %>

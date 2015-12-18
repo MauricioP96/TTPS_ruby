@@ -14,6 +14,7 @@
 			<td><%= cliente.birthdate %></td>
 			<td><%= link_to 'Modificar cliente', edit_client_path(cliente.id) %></td>
 			<td><%= link_to 'Ver perfil', client_path(cliente.id) %></td>
+			<td><%= link_to 'Estadísticas', stats_client_path(cliente.id) %></td>
 			<td><%= link_to 'Eliminar', cliente,method: :delete,confirm: 'Seguro quiere eliminar el cliente?' %></td>
 			<td><%= link_to 'Ver facturas', client_bills_path(cliente.id) %></td>
 		</tr>

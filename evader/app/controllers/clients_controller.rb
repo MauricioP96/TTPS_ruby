@@ -41,6 +41,13 @@ class ClientsController < ApplicationController
 		redirect_to clients_url
 
 	end
+	def stats
+		client=Client.find(params[:id])
+		@amounts=client.amounts_by_year
+		@cant_bills=client.bills_by_year
+		@top=client.top_5_receivers
+	end
+	
 	private
 
 	def client_params
