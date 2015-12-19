@@ -8,19 +8,19 @@
 	<%= form_for (@cliente) do |f| %>
 		<div class='field'>
 			<%= f.label :nombre %><br>
-			<%= f.text_field :name %>
+			<%= f.text_field :name ,:required => true %>
 		</div>
 		<div class='field'>
 			<%= f.label :apellido %><br>
-			<%= f.text_field :last_name %>
+			<%= f.text_field :last_name,:required => true  %>
 		</div>
 		<div class='field'>
 			<%= f.label :dNI %><br>
-			<%= f.number_field :dni, min:10000000, max:99999999 %>
+			<%= f.number_field :dni, min:10000000, max:99999999 ,:required => true %>
 		</div>
 		<div class='field'>
 			<%= f.label :fecha_de_nacimiento %><br>
-			<%= f.date_field :birthdate %>
+			<%= f.date_field :birthdate,:required => true  %>
 		</div>
 		<div class='field'>
 			<%= f.radio_button(:gender, "male") %>
@@ -36,17 +36,17 @@
 		</div>
 		<div class='field'>
 			<%= f.label :numero %><br>
-			<%= f.text_field :cu_value , pattern:/[\d{2}]+\-[\d{8}]+\-[\d{1}]/ %>
+			<%= f.text_field :cu_value , pattern:/[\d{2}]+\-[\d{8}]+\-[\d{1}]/ ,:required => true %>
 		</div>
 		
 		<%= fields_for :contacts do |c| %>
     		<div class='field'>
     		<%= c.label :tipo_de_contacto %><br>
-    		<%= c.select( :type_cont, [['Teléfono','telefono'],[ 'Email','email'],['Skype','skype'],[ 'Dirección postal','dir_postal']]) %> <br>	
+    		<%= c.select :type_cont, [['Teléfono','telefono'],[ 'Email','email'],['Skype','skype'],[ 'Dirección postal','dir_postal']],:required => true  %> <br>	
     		</div>
     		<div class='field'>
     		<%= c.label :forma_de_contacto %><br>
-    		<%= c.text_field :value_cont %>
+    		<%= c.text_field :value_cont ,:required => true %>
     		</div>
     	<% end %>
 
@@ -54,8 +54,8 @@
 		<div class='actions'>
 		<%= f.submit 'Registrar' %>
 		</div>
-
+		<% end %>
 		<%= link_to 'Atras', clients_path %>
-	<% end %>
+	
 </body>
 </html>

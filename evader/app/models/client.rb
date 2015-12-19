@@ -1,27 +1,37 @@
 class Client < ActiveRecord::Base
-	has_many :contacts
+	has_many :contacts,dependent: :destroy
+    validates :contacts, presence: true
     validates_associated :contacts
-    has_many :bills
+    has_many :bills,dependent: :destroy
+    validates_associated :bills
+    #validates :dni ,uniqueness: true, on: :create
 	validates :name, presence: true,format:{with: /\A[a-zA-Z ]+\z/,
-        									message: "only allows letters" } #\w+
+        									message: "only allows letters" },allow_blank: false #\w+
 	validates :last_name, presence: true,format:{with: /\A[a-zA-Z ]+\z/,
-        									message: "only allows letters" }
-	validates :birthdate, presence: true  #ver si necesito verificar q sea un string valido como fecha DD/MM/YYYY
-	validates :gender, presence: true,inclusion: { in: %w(male female),message: " is not a valid gender"}
-	validates :dni, presence: true,numericality: { only_integer: true },length: { maximum: 8 }
-	validates :cu_type, presence: true,inclusion: { in: %w(cuit cuil),message: " is not a valid cuit/cuil type"}
+        									message: "only allows letters" },allow_blank: false
+	validates :birthdate, presence: true ,allow_blank: false #ver si necesito verificar q sea un string valido como fecha DD/MM/YYYY
+	validates :gender, presence: true,inclusion: { in: %w(male female),message: " is not a valid gender"},allow_blank: false
+	validates :dni, presence: true,numericality: { only_integer: true },length: { maximum: 8 },allow_blank: false, uniqueness: true
+	validates :cu_type, presence: true,inclusion: { in: %w(cuit cuil),message: " is not a valid cuit/cuil type"},allow_blank: false
 	validates :cu_value, presence: true,format:{with: /[\d{2}]+\-[\d{8}]+\-[\d{1}]/,
-      									message: "not cuit/l format" }
+      									message: "not cuit/l format" },allow_blank: false
     accepts_nested_attributes_for :contacts
     def actualizar_contactos(cont)
-    	contacts.destroy_all
+    	cont_enum=cont.to_enum
+        act_enum=contacts.all.to_enum
+        loop do
+            a=cont_enum.next
+            act_enum.next.update(type_cont:a[1]['type_cont'],value_cont:a[1]['value_cont'])
+        end
+
+        #contacts.destroy_all
     	#foo=self.contacts.all.to_a.to_enum
-    	cont.values.each do |c|
+    	#cont.values.each do |c|
 			#act=foo.next
 			#act.type_cont=cont.type_cont
 			#act.value_cont=cont.value_cont
-			contacts.create(c)
-		end	
+		#	contacts.create(c)
+		#end	
 		
     end
     def age
@@ -57,10 +67,11 @@ class Client < ActiveRecord::Base
     end
     def actualizar(client,cont,cont_nue)
     	
-    	@nue=Contact.new(cont_nue)
+    	@nue=contacts.new(cont_nue)
     	
     	if @nue.valid?
-    		(update_attributes(client) && actualizar_contactos(cont)&& contacts.create(cont_nue))
+    	
+        	(update_attributes(client) && actualizar_contactos(cont)&& @nue.save)
     	else
     		(update_attributes(client) && actualizar_contactos(cont))
     	end
