@@ -10,6 +10,54 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
+
+
  */
+
+body{
+	background-color: rgba(59, 80, 247, 0.81);
+	padding-top: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 1%;
+}
+#container{
+	border-radius: 10px 10px 10px 10px;
+    padding: 4%;
+border: 1px solid #000000;
+background-color: #a8a8a8;
+    padding-top: 2%;
+    overflow: hidden;
+}
+a:link   
+{   
+ text-decoration:none;   
+ 
+}  
+a:hover {text-decoration:underline;color:#FF2E2E;}  
+table{
+	border: #000000 2px solid;
+	border-collapse: collapse; 
+}
+tbody {
+  border: blue 2px solid;}
+ td {
+  border: blue 2px solid;}
+th{
+	border: #000000 2px solid;
+	padding:15px;
+}
+td{
+	padding:15px;
+}
+fieldset{
+	float:left;
+	padding: 2%;
+}
+#submit{clear:both;}
+.field{
+	margin-top: 5%;
+}
+#fields_2{
+	float:left;
+}

@@ -4,25 +4,32 @@
 	<title></title>
 </head>
 <body>
-	<h1>Pagina inicio</h1>
+	<h1>Sistema de facturación E-Vader</h1>
+	<h3>Listado de clientes</h3>
+	<button><%= link_to 'Registrar nuevo cliente', new_client_path %></button>
+
 	<table>
+		<thead>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>DNI</th>
+			<th colspan="5">Opciones</th>
+		</thead>
 		<% @clientes.each do |cliente| %>
 		<tr>
 			<td><%= cliente.name %></td>
 			<td><%= cliente.last_name %></td>
 			<td><%= cliente.dni %></td>
-			<td><%= cliente.birthdate %></td>
-			<td><%= link_to 'Modificar cliente', edit_client_path(cliente.id) %></td>
-			<td><%= link_to 'Ver perfil', client_path(cliente.id) %></td>
-			<td><%= link_to 'Estadísticas', stats_client_path(cliente.id) %></td>
-			<td><%= link_to 'Eliminar', cliente,method: :delete,confirm: 'Seguro quiere eliminar el cliente?' %></td>
-			<td><%= link_to 'Ver facturas', client_bills_path(cliente.id) %></td>
+			<td><button><%= link_to 'Modificar cliente', edit_client_path(cliente.id) %></button></td>
+			<td><button><%= link_to 'Ver perfil', client_path(cliente.id) %></button></td>
+			<td><button><%= link_to 'Estadísticas', stats_client_path(cliente.id) %></button></td>
+			<td><button><%= link_to 'Eliminar', cliente,method: :delete,confirm: 'Seguro quiere eliminar el cliente?' %></button></td>
+			<td><button><%= link_to 'Ver facturas', client_bills_path(cliente.id) %></button></td>
 		</tr>
 		<% end %>
 		<% if @clientes.size==0 %>
 			NO HAY CLIENTES
 		<% end %>
 	</table>
-<%= link_to 'Registrar nuevo cliente', new_client_path %>
-</body>
+	</body>
 </html>

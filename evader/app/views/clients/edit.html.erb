@@ -5,7 +5,10 @@
 </head>
 <body>
 	<h1>Modificar cliente</h1>
+	<button><%= link_to 'Atras', clients_path,:id =>'atras' %></button>
 	<%= form_for (@cliente) do |f| %>
+		<fieldset>
+		<legend>Datos personales</legend>
 		<div class='field'>
 			<%= f.label :nombre %><br>
 			<%= f.text_field :name ,:required => true %>
@@ -28,6 +31,9 @@
 			<%= f.radio_button(:gender, "female") %>
 			<%= f.label(:gender_female, "Mujer") %>
 		</div>
+		</fieldset>
+		<fieldset>
+		<legend>Datos comerciales</legend>
 		<div class='field'>
 			<%= f.radio_button(:cu_type, "cuit") %>
 			<%= f.label(:cu_type_cuit, "CUIT") %>
@@ -38,6 +44,9 @@
 			<%= f.label :numero %><br>
 			<%= f.text_field :cu_value , pattern:/[\d{2}]+\-[\d{8}]+\-[\d{1}]/,:required => true  %>
 		</div>
+		</fieldset>
+		<fieldset>
+		<legend>Datos de contacto</legend>
 		<% if !@contactos.nil? %>
 			<% @contactos.each do |cont| %>
 				<%= fields_for "cont[]",cont do |c| %>
@@ -52,7 +61,10 @@
 	    		<% end %>
 	    	<% end %>
 	    <% end %>
-	    <h3>Ingrese nuevo contacto (opcional):</h3>
+	    </fieldset>
+	    <fieldset>
+		<legend>Nuevo Contacto</legend>
+	    <h3>Opcional</h3>
     	<%= fields_for :cont_nue do |c| %>
 	    		<div class='field'>
 	    		<%= c.label :forma_de_contacto %><br>
@@ -63,12 +75,10 @@
 	    		<%= c.text_field :value_cont %>
 	    		</div>
     		<% end %>
-
+    		</fieldset>
 		<div class='actions'>
 		<%= f.submit 'Guardar cambios' %>
 		</div>
-
-		<%= link_to 'Atras', clients_path %>
 	<% end %>
 </body>
 </html>

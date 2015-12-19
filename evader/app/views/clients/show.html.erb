@@ -4,22 +4,20 @@
 	<title></title>
 </head>
 <body>
-	<h1>Pagina inicio</h1>
-	<%= @cliente.name %><br>
-	<%= @cliente.last_name %><br>
-	<%= @cliente.dni %><br>
-	<%= @cliente.birthdate %><br>
-	<%= @cliente.age %>años<br>
-	<%= @cliente.cu_type %>
-	<%= @cliente.cu_value %><br>
+	<h1>Detalles de cliente</h1>
+	<button><%= link_to 'Atras', clients_path,:id =>'atras' %></button>
+	<p>Nombre: <%= @cliente.name %></p>
+	<p>Apellido: <%= @cliente.last_name %></p>
+	<p>DNI: <%= @cliente.dni %></p>
+	<p>Fecha de nacimiento: <%= @cliente.birthdate %></p>
+	<p>Edad: <%= @cliente.age %>años</p>
+	<p><%= @cliente.cu_type.capitalize %> <%= @cliente.cu_value %></p>
 	<% @cliente.contacts.each do |cont| %>
-		<%= cont.type_cont %>
-		<%= cont.value_cont %>
-	<% end %><br>
-	<%= link_to 'Modificar cliente', edit_client_path(@cliente.id) %>
-	<%= link_to 'Eliminar', @cliente,method: :delete,confirm: 'Seguro quiere eliminar el cliente?' %>
-	<%= link_to 'Estadísticas', stats_client_path(@cliente.id) %><br>
-	<%= link_to 'Atras', clients_path %>
+		<p><%= cont.type_cont.capitalize %> <%= cont.value_cont %></p>
+	<% end %>
+	<button><%= link_to 'Modificar cliente', edit_client_path(@cliente.id) %></button>
+	<button><%= link_to 'Eliminar', @cliente,method: :delete,confirm: 'Seguro quiere eliminar el cliente?' %></button>
+	<button><%= link_to 'Estadísticas', stats_client_path(@cliente.id) %></button>
 
 </body>
 </html>

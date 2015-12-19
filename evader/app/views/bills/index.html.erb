@@ -4,24 +4,31 @@
 	<title></title>
 </head>
 <body>
-	<h1>Faturas</h1>
-	<%= link_to 'Atras', clients_path %>
+	<h1>Facturas</h1>
+	<button><%= link_to 'Atras', clients_path %></button>
+	<button><%= link_to 'Agregar nueva factura', new_client_bill_path %></button>
 	<table>
 		<% if @bills.nil? %>
 			NO HAY FACTURAS
 		<% else %>
+		<thead>
+			<th>Destinatario</th>
+			<th>Fecha</th>
+			<th>Monto</th>
+			<th colspan="4">Opciones</th>
+		</thead>
 		<% @bills.each do |bill| %>
+
 		<tr>
 			<td><%= bill.receiver %></td>
 			<td><%= bill.date %></td>
 			<td><%= bill.amount %></td>
-			<td><%= link_to 'Modificar factura', edit_client_bill_path(bill.client_id,bill.id) %></td>
-			<td><%= link_to 'Ver detalles de factura', client_bill_path(bill.client_id,bill.id) %></td>
-			<td><%= link_to 'Eliminar',client_bill_path(bill.client_id,bill.id),method: :delete,confirm: 'Seguro quiere eliminar la factura?' %></td><br>
+			<td><button><%= link_to 'Modificar factura', edit_client_bill_path(bill.client_id,bill.id) %></button></td>
+			<td><button><%= link_to 'Ver detalles de factura', client_bill_path(bill.client_id,bill.id) %></button></td>
+			<td><button><%= link_to 'Eliminar',client_bill_path(bill.client_id,bill.id),method: :delete,confirm: 'Seguro quiere eliminar la factura?' %></button></td>
 		</tr>
 		<% end %>
 		<% end %>
 	</table>
-<%= link_to 'Agregar nueva factura', new_client_bill_path %>
 </body>
 </html>

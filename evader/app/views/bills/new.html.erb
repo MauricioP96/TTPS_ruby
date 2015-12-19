@@ -5,7 +5,10 @@
 </head>
 <body>
 	<h1>Crear factura</h1>
+	<button><%= link_to 'Atras', client_bills_path %></button>
 	<%= form_for @bill, url:client_bills_path do |f| %>
+		<fieldset>
+		<legend>Datos de la factura</legend>	
 		<div class='field'>
 			<%= f.label :destinatario %><br>
 			<%= f.text_field :receiver,:required => true %>
@@ -18,6 +21,9 @@
 			<%= f.label :fecha_de_emision %><br>
 			<%= f.date_field :date,:required => true %>
 		</div>
+		</fieldset>
+		<fieldset>
+		<legend>Detalles</legend>
 		<div class='field'>
 			<%= f.label :detalles %><br>
 			<%= f.text_area(:details, {size: "30x20", :maxlength => 160,:required => true}) %>
@@ -25,8 +31,8 @@
 		<div class='actions'>
 		<%= f.submit 'Registrar' %>
 		</div>
-
-		<%= link_to 'Atras', client_bills_path %>
+	</fieldset>
+		
 	<% end %>
 </body>
 </html>

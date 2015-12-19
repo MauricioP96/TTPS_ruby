@@ -5,26 +5,28 @@
 </head>
 <body>
 	<h1>Estadísticas de cliente</h1>
-	<%= link_to 'Atras', clients_path %>
-	<h2>Facturacion pro año</h2>
+	<button><%= link_to 'Atras', clients_path,:id =>'atras' %></button>
+	<h2>Facturacion por año</h2>
 	<% @amounts.each do |index,value |%>
 		<%= content_tag(:p, "En #{index} facturó $ #{value}") %>
-	<% end %> <br>
-	<h2>Top 5 destinatarios</h2>
-	<% @top.each do |name, monto| %>
-		<ol>
-			<li><%= "La persona #{name} le facturó $ #{monto} en total" %></li>
-		</ol>
 	<% end %>
-	<br>
+	<h2>Top 5 destinatarios</h2>
+	<ol>
+	<% @top.each do |name, monto| %>
+		
+			<li><%= "La persona #{name} le facturó $ #{monto} en total" %></li>
+		
+	<% end %>
+	</ol>
 	<h2>Cantidad de facturas por mes emitidas por el cliente</h2>
+	<ol>
 	<% @cant_bills.each do |var| %>
-		<ol>
+		
 			<li><%= "En #{var[:name]} se emitieron #{var[:cant]} facturas" %></li>
-		</ol>
+		
 
 
-	<% end %> <br>
-
+	<% end %>
+	</ol>
 </body>
 </html>

@@ -22,17 +22,7 @@ class Client < ActiveRecord::Base
         loop do
             a=cont_enum.next
             act_enum.next.update(type_cont:a[1]['type_cont'],value_cont:a[1]['value_cont'])
-        end
-
-        #contacts.destroy_all
-    	#foo=self.contacts.all.to_a.to_enum
-    	#cont.values.each do |c|
-			#act=foo.next
-			#act.type_cont=cont.type_cont
-			#act.value_cont=cont.value_cont
-		#	contacts.create(c)
-		#end	
-		
+        end	
     end
     def age
         today=Date.today
@@ -61,7 +51,7 @@ class Client < ActiveRecord::Base
     def top_5_receivers
         var=Hash.new(0)
         bills.all.each{|b| var[b.receiver]+=b.amount}
-        var.sort_by{ |rec, val| val }.first(5)
+        var.sort_by{ |rec, val| val }.reverse.first(5)
 
 
     end

@@ -5,18 +5,21 @@
 </head>
 <body>
 	<h1>Crear cliente</h1>
+	<button><%= link_to 'Atras', clients_path,:id =>'atras' %></button>
 	<%= form_for (@cliente) do |f| %>
+		<fieldset >
+    	<legend>Datos personales</legend>
 		<div class='field'>
 			<%= f.label :nombre %><br>
-			<%= f.text_field :name ,:required => true %>
+			<%= f.text_field :name ,placeholder:"Solo letras",:required => true %>
 		</div>
 		<div class='field'>
 			<%= f.label :apellido %><br>
-			<%= f.text_field :last_name,:required => true  %>
+			<%= f.text_field :last_name,placeholder:"Solo letras",:required => true  %>
 		</div>
 		<div class='field'>
 			<%= f.label :dNI %><br>
-			<%= f.number_field :dni, min:10000000, max:99999999 ,:required => true %>
+			<%= f.number_field :dni,placeholder:"Solo numeros", min:10000000, max:99999999 ,size:20,:required => true %>
 		</div>
 		<div class='field'>
 			<%= f.label :fecha_de_nacimiento %><br>
@@ -28,6 +31,9 @@
 			<%= f.radio_button(:gender, "female") %>
 			<%= f.label(:gender_female, "Mujer") %>
 		</div>
+		</fieldset>
+		<fieldset>
+    	<legend>Datos Comerciales</legend>
 		<div class='field'>
 			<%= f.radio_button(:cu_type, "cuit") %>
 			<%= f.label(:cu_type_cuit, "CUIT") %>
@@ -36,9 +42,11 @@
 		</div>
 		<div class='field'>
 			<%= f.label :numero %><br>
-			<%= f.text_field :cu_value , pattern:/[\d{2}]+\-[\d{8}]+\-[\d{1}]/ ,:required => true %>
+			<%= f.text_field :cu_value , pattern:/[\d{2}]+\-[\d{8}]+\-[\d{1}]/ ,placeholder:"NN-NNNNNNNN-N",:required => true %>
 		</div>
-		
+		</fieldset>
+		<fieldset>
+    	<legend>Datos de contacto</legend>
 		<%= fields_for :contacts do |c| %>
     		<div class='field'>
     		<%= c.label :tipo_de_contacto %><br>
@@ -46,16 +54,16 @@
     		</div>
     		<div class='field'>
     		<%= c.label :forma_de_contacto %><br>
-    		<%= c.text_field :value_cont ,:required => true %>
+    		<%= c.text_field :value_cont ,placeholder:"Ingrese su contacto",:required => true %>
     		</div>
     	<% end %>
-
+    	</fieldset>
 
 		<div class='actions'>
-		<%= f.submit 'Registrar' %>
+		<%= f.submit 'Registrar',:id =>'submit' %>
 		</div>
 		<% end %>
-		<%= link_to 'Atras', clients_path %>
+		
 	
 </body>
 </html>
