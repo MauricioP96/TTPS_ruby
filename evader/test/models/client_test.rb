@@ -42,8 +42,5 @@ class ClientTest < ActiveSupport::TestCase
   		a.save   #guardo el cliente
   		assert a.destroy,"Se borro el cliente sin facturas"
   	end
-  	test "esvacio" do
-  		assert Client.all.empty?,"no esta vacia"
 
-  	end
 end
