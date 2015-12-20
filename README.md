@@ -1,7 +1,6 @@
 # TTPS_ruby
-Posicionados en el directorio TTPS_ruby ejecutar en linea de comando
- IMPORTANTE
- bash init.sh
+Posicionados en el directorio TTPS_ruby ejecutar en linea de comando\n
+ bash init.sh \n
 Para mas informacion ver el contenido del archivo
 
 #Tests
