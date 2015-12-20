@@ -42,7 +42,7 @@
 		</div>
 		<div class='field'>
 			<%= f.label :numero %><br>
-			<%= f.text_field :cu_value , pattern:/[\d{2}]+\-[\d{8}]+\-[\d{1}]/ ,placeholder:"NN-NNNNNNNN-N",:required => true %>
+			<%= f.text_field :cu_value , pattern:/\A[\d{2}]\-[\d{8}]\-[\d{1}]\z/ ,placeholder:"NN-NNNNNNNN-N",:required => true %>
 		</div>
 		</fieldset>
 		<fieldset>

@@ -25,7 +25,6 @@ class ClientsController < ApplicationController
 		#@cliente.actualizar_contactos(params[:cont])
 		
 		
-		
 		if @cliente.actualizar(client_params,params[:cont],cont_nue_params)  #update_attributes(client_params)
 			redirect_to clients_path()
 		else

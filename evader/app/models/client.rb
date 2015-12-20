@@ -13,16 +13,18 @@ class Client < ActiveRecord::Base
 	validates :gender, presence: true,inclusion: { in: %w(male female),message: " is not a valid gender"},allow_blank: false
 	validates :dni, presence: true,numericality: { only_integer: true },length: { maximum: 8 },allow_blank: false, uniqueness: true
 	validates :cu_type, presence: true,inclusion: { in: %w(cuit cuil),message: " is not a valid cuit/cuil type"},allow_blank: false
-	validates :cu_value, presence: true,format:{with: /[\d{2}]+\-[\d{8}]+\-[\d{1}]/,
+	validates :cu_value, presence: true,format:{with: /\A\d{2}\-\d{8}\-\d{1}\z/,
       									message: "not cuit/l format" },allow_blank: false
     accepts_nested_attributes_for :contacts
     def actualizar_contactos(cont)
     	cont_enum=cont.to_enum
         act_enum=contacts.all.to_enum
+        res=true
         loop do
             a=cont_enum.next
-            act_enum.next.update(type_cont:a[1]['type_cont'],value_cont:a[1]['value_cont'])
+           res=res&&act_enum.next.update(type_cont:a[1]['type_cont'],value_cont:a[1]['value_cont'])
         end	
+        res
     end
     def age
         today=Date.today
@@ -57,11 +59,11 @@ class Client < ActiveRecord::Base
     end
     def actualizar(client,cont,cont_nue)
     	
-    	@nue=contacts.new(cont_nue)
-    	
+    	@nue=Contact.new(cont_nue)
+
     	if @nue.valid?
     	
-        	(update_attributes(client) && actualizar_contactos(cont)&& @nue.save)
+        	(update_attributes(client) && actualizar_contactos(cont)&& contacts.new(cont_nue).save)
     	else
     		(update_attributes(client) && actualizar_contactos(cont))
     	end
