@@ -28,7 +28,7 @@ class ClientTest < ActiveSupport::TestCase
   		a=Client.new(name:'sadsad',last_name:'saffgdg',dni:0,gender:'male',birthdate:Date.today,cu_type:'cuil',cu_value:'23-36512477-9')
   		a.contacts.new(value_cont:'7777777',type_cont:'telefono')
   		a.save   #guardo el cliente
-  		a.bills.new(details:'sadsadsadsa',amount:88.3,date:Date.today,receiver:'xxxxxxx')
+  		a.bills.new(details:'sadsadsadsa',amount:88.3,date:Date.today,receiver:'xxxxxxx',cuit_l:'55-98745612-3')
   		a.save
   		#cree un cliente con al menos una factura emitida
   		assert a.destroy,"Se borro el cliente con factura"

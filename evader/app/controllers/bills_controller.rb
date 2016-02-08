@@ -36,6 +36,6 @@ class BillsController < ApplicationController
 	private
 
 	def bill_params
-		params.require(:bill).permit(:receiver,:amount,:date,:details)
+		params.require(:bill).permit(:receiver,:cuit_l,:amount,:date,:details)
 	end
 end

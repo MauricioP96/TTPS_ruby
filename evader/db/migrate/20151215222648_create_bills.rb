@@ -6,7 +6,7 @@ class CreateBills < ActiveRecord::Migration
       t.float :amount
       t.date :date
       t.string :receiver
-
+      t.string :cuit_l
       t.timestamps null: false
     end
   end

@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20151216065300) do
     t.float    "amount"
     t.date     "date"
     t.string   "receiver"
+    t.string   "cuit_l"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

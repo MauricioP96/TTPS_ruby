@@ -10,13 +10,13 @@ class BillTest < ActiveSupport::TestCase
   		a=Client.new(name:'sadsad',last_name:'saffgdg',dni:0,gender:'male',birthdate:Date.today,cu_type:'cuil',cu_value:'23-36512477-9')
   		a.contacts.new(value_cont:'7777777',type_cont:'telefono')
   		a.save   #guardo el cliente
-  		assert a.bills.create(details:'sadsadsad',amount:8.6,date:Date.today,receiver:'pepe'),"No guardo la factura valida"
+  		assert a.bills.create(details:'sadsadsad',amount:8.6,date:Date.today,receiver:'pepe',cuit_l:"55-96632558-4"),"No guardo la factura valida"
   	end
   	test "no debe guardar factura con datos invalidos" do
   		a=Client.new(name:'sadsad',last_name:'saffgdg',dni:0,gender:'male',birthdate:Date.today,cu_type:'cuil',cu_value:'23-36512477-9')
   		a.contacts.new(value_cont:'7777777',type_cont:'telefono')
   		a.save
-  		b=a.bills.new(details:'sadsadsad',amount:'sasd',date:'rrrrr',receiver:'pepe')
+  		b=a.bills.new(details:'sadsadsad',amount:'sasd',date:'rrrrr',receiver:'pepe',cuit_l:"sadkadkakkmaa")
   		assert_not b.save,"Guardo la factura invalida"
   	end
   	test "no debe guardar factura sin cliente que la haya emitido" do

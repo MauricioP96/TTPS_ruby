@@ -14,6 +14,10 @@
 			<%= f.text_field :receiver,:required => true %>
 		</div>
 		<div class='field'>
+			<%= f.label "cuit/cuil".to_s.to_sym %><br>
+			<%= f.text_field :cuit_l,:required => true %>
+		</div>
+		<div class='field'>
 			<%= f.label :monto %><br>
 			<%= f.number_field :amount, :step => 0.01,:required => true %>
 		</div>

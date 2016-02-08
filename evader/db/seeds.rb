@@ -21,10 +21,10 @@ contacts_list=[
 	['telefono','13213543252']
 ]
 bills_list=[
-['2 televisores 30 pulg',9000.99,'2015/12/01','Jose Argento'],
-['1 heladera wirpool',120.50,'2015/03/08','Maria Benitez'],
-['5 ventiladores de techo',350.99,'2012/04/13','Jose Argento'],
-['1 batidora',500.30,'2010/05/20','Pascual Nis']
+['2 televisores 30 pulg',9000.99,'2015/12/01','Jose Argento',"87-96584712-3"],
+['1 heladera wirpool',120.50,'2015/03/08','Maria Benitez',"52-14783569-8"],
+['5 ventiladores de techo',350.99,'2012/04/13','Jose Argento',"45-12369758-4"],
+['1 batidora',500.30,'2010/05/20','Pascual Nis',"19-96541236-7"]
 ]
 client_list.each do |nam , last_nam, dat ,gende,dn ,type,value |
   a=Client.new( name: nam, last_name: last_nam ,birthdate:dat ,gender:gende ,dni:dn,cu_type:type,cu_value:value)
@@ -33,8 +33,8 @@ client_list.each do |nam , last_nam, dat ,gende,dn ,type,value |
   	a.contacts.new(type_cont:ct, value_cont:cv)
   end
   a.save
- bills_list.each do |det ,mont,dat,rec|
-   a.bills.new(details:det,amount:mont,date:dat,receiver:rec)
+ bills_list.each do |det ,mont,dat,rec,cui|
+   a.bills.new(details:det,amount:mont,date:dat,receiver:rec,cuit_l:cui)
 	end	
   puts a.save
 end

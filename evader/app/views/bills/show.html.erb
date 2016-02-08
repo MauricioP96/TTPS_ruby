@@ -7,6 +7,7 @@
 	<h1>Detalles factura</h1>
 	<button><%= link_to 'Atras', client_bills_path %></button>
 	<p>Destinatario: <%= @bill.receiver %></p>
+	<p>Cuit/cuil: <%= @bill.cuit_l %></p>
 	<p>Monto: $<%= @bill.amount %></p>
 	<p>Fecha: <%= @bill.date %></p>
 	<p>Detalle: <%= @bill.details %></p>
