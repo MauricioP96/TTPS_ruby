@@ -58,7 +58,7 @@ class Client < ActiveRecord::Base
 
 
     end
-    def actualizar(client,cont,cont_nue)
+    #def actualizar(client,cont,cont_nue)
     	
     	#@nue=Contact.new(cont_nue)
 
@@ -68,10 +68,10 @@ class Client < ActiveRecord::Base
     	#else
     	#	(update_attributes(client) && actualizar_contactos(cont))
     	#end
-        update_attributes(client)
-        Contact.update(cont.keys,cont.values)
-        contacts.create(cont_nue)
-    end
+     #   update_attributes(client)
+     #   Contact.update(cont.keys,cont.values)
+     #   contacts.create(cont_nue)
+    #end
     private
     def hash_with_months
         var=Array.new

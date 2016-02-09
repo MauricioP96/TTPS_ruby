@@ -29,7 +29,9 @@ class ClientsController < ApplicationController
 		#else
 		#	render action: 'edit'
 		#end
-		@cliente.actualizar(client_params,params[:cont],cont_nue_params)
+		
+		@cliente.update(client_params_to_update)
+		@cliente.contacts.create(cont_nue_params)
 		redirect_to edit_client_path
 	end
 	def show
@@ -50,6 +52,10 @@ class ClientsController < ApplicationController
 	
 	private
 
+	def client_params_to_update
+		client_params.merge!({contacts_attributes: params[:cont].collect{|key, value| {id:key,value_cont:value['value_cont'],type_cont:value['type_cont']}} }).permit(:name,:last_name,:birthdate,:gender,:dni,:cu_type,:cu_value,contacts_attributes:[ :id,:value_cont, :type_cont ])
+
+	end
 	def client_params
 		params.require(:client).permit(:name,:last_name,:birthdate,:gender,:dni,:cu_type,:cu_value)
 	end
