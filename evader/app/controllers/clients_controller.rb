@@ -24,12 +24,13 @@ class ClientsController < ApplicationController
 		@contactos=@cliente.contacts.all
 		#@cliente.actualizar_contactos(params[:cont])
 		
-		
-		if @cliente.actualizar(client_params,params[:cont],cont_nue_params)  #update_attributes(client_params)
-			redirect_to clients_path()
-		else
-			render action: 'edit'
-		end
+		#if @cliente.actualizar(client_params,params[:cont],cont_nue_params)  #update_attributes(client_params)
+		#	redirect_to clients_path()
+		#else
+		#	render action: 'edit'
+		#end
+		@cliente.actualizar(client_params,params[:cont],cont_nue_params)
+		redirect_to edit_client_path
 	end
 	def show
 		@cliente=Client.find(params[:id])

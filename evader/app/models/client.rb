@@ -17,7 +17,8 @@ class Client < ActiveRecord::Base
       									message: "not cuit/l format" },allow_blank: false
     accepts_nested_attributes_for :contacts
     def actualizar_contactos(cont)
-    	cont_enum=cont.to_enum
+    	halt
+        cont_enum=cont.to_enum
         act_enum=contacts.all.to_enum
         res=true
         loop do
@@ -59,15 +60,17 @@ class Client < ActiveRecord::Base
     end
     def actualizar(client,cont,cont_nue)
     	
-    	@nue=Contact.new(cont_nue)
+    	#@nue=Contact.new(cont_nue)
 
-    	if @nue.valid?
+    	#if @nue.valid?
     	
-        	(update_attributes(client) && actualizar_contactos(cont)&& contacts.new(cont_nue).save)
-    	else
-    		(update_attributes(client) && actualizar_contactos(cont))
-    	end
-
+        #	(update_attributes(client) && actualizar_contactos(cont)&& contacts.new(cont_nue).save)
+    	#else
+    	#	(update_attributes(client) && actualizar_contactos(cont))
+    	#end
+        update_attributes(client)
+        Contact.update(cont.keys,cont.values)
+        contacts.create(cont_nue)
     end
     private
     def hash_with_months
